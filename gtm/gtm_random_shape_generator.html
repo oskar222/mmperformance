@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Shape Generator</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f3f3f3;
+        color: #333;
+      }
+      h1 {
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      #controls {
+        margin-bottom: 20px;
+      }
+      button {
+        margin: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      button:hover {
+        background-color: #ddd;
+      }
+      #canvas {
+        width: 200px;
+        height: 200px;
+        /* border: 2px solid #333; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #drawSquare {
+        background-color: rgb(55, 0, 0);
+        color: rgb(230, 211, 211);
+      }
+      #drawCircle {
+        background-color: rgb(230, 211, 211);
+      }
+      .shape {
+        width: 100px;
+        height: 100px;
+      }
+      .square {
+        shape-outside: square();
+      }
+      .circle {
+        border-radius: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Random Shape Generator</h1>
+    <div id="controls">
+      <button id="drawSquare" class="btn">Draw Square</button>
+      <button id="drawCircle" class="btn">Draw Circle</button>
+    </div>
+    <div id="canvas"></div>
+
+    <script>
+      document
+        .getElementById("drawSquare")
+        .addEventListener("click", function () {
+          drawShape("square");
+        });
+
+      document
+        .getElementById("drawCircle")
+        .addEventListener("click", function () {
+          drawShape("circle");
+        });
+
+      function drawShape(shape) {
+        var canvas = document.getElementById("canvas");
+        canvas.innerHTML = "";
+        var element = document.createElement("div");
+        element.className = `shape ${shape}`;
+        element.style.backgroundColor = getRandomColor();
+        canvas.appendChild(element);
+      }
+
+      function getRandomColor() {
+        var colors = ["red", "green", "blue", "yellow", "purple"];
+        return colors[Math.floor(Math.random() * colors.length)];
+      }
+    </script>
+  </body>
+</html>
